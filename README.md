@@ -18,13 +18,16 @@ WarsawJS Workshop #24: Projekt panelu administracyjnego
 
 ## Krok po kroku
 
-1. Instalacja `npm/json-server`
-2. Wygenerowanie danych za pomocą schemy:
-    + <https://gist.github.com/piecioshka/b071e2d53a1115527ab5a5b21765bed3>
-3. Zbudowanie polecenia: `npm run start:back-end`,
-4. Uruchomić serwer bazodanowy
+### Baza danych
 
-### Napisać aplikację poprzez definiowanie wymagań w testach
+1. Zainstalować `npm/json-server`
+2. Wejść na generator `JSON Schema faker`
+3. Wygenerować dane za pomocą schemy:
+    + <https://gist.github.com/piecioshka/b071e2d53a1115527ab5a5b21765bed3>
+4. Zbudować polecenia: `npm run start:back-end`,
+5. Uruchomić serwer aplikacyjno-bazodanowy
+
+### Aplikacja
 
 1. Wygenerowanie konfiguracji dla `Jest`-a
 
@@ -32,10 +35,16 @@ WarsawJS Workshop #24: Projekt panelu administracyjnego
     npx jest --init
     ```
 
-2. Integracja z Babel.js
+2. Integracja z `Babel.js`
 
     ```bash
-    npm i -D babel-jest regenerator-runtime @babel/preset-env @babel/core babel-core@^7.0.0-bridge.0
+    npm i -D @babel/core @babel/plugin-proposal-class-properties \
+        @babel/plugin-transform-runtime @babel/preset-env \
+        @babel/runtime babel-core@^7.0.0-bridge.0 \
+        babel-eslint babel-jest \
+        babel-loader eslint eslint-config-piecioshka \
+        jest-cli jsdom json-server node-fetch regenerator-runtime \
+        webpack webpack-cli
     ```
 
 3. Stworzyć plik `.babelrc` o zawartości:
@@ -43,23 +52,42 @@ WarsawJS Workshop #24: Projekt panelu administracyjnego
     ```json
     {
         "presets": [
-            "env"
+            "@babel/preset-env"
+        ],
+        "plugins": [
+            "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-transform-runtime"
         ]
     }
+
     ```
 
 4. Napisać test, który będzie weryfikować serwis do pobierania danych z serwera
-5. Napisać test, który będzie sprawdzać komponent prezentować
-6. Zamockować DOM za pomocą `npm/jsdom`
-7. Stworzyć stronę DEMO, gdzie osadzić uprzednio stworzony komponent
+5. Napisać wcześniej wspomniany serwis
 
-## Problemy
+### Continuous Integration
 
-* usunięcie parametryzacji funkcji utilsowych
-* agregacja funkcji utilsowych to jednego pliku
-* zabicie na sztywno
-* skopiowanie funkcji utilsowych kilka razy w jednym pliku + zmienić ich nazwę
+1. Zalogować sie do Semaphore CI za pomocą GitHuba
+2. Skonfigurować projekt
+3. Dodać badge do `README.md` projektu
 
+### Aplikacja, część 2
+
+* Napisać test, który będzie weryfikować komponent do prezentcji
+    + Zamockować DOM za pomocą `npm/jsdom`
+* Napisać wcześniej wspomniany komponent
+* Napisać test, który będzie weryfikować model
+* Napisać wcześniej wspomniany model
+* Stworzyć stronę DEMO, gdzie osadzić uprzednio stworzony komponent
+    + Stowrzyć plik `front-end/main.js`, który połączy wszystkie 3 moduły
+    + Wykorzystać `Webpacka` do zbudowania pliku `dist/bundle.js`
+
+## Problemy do rozwiązania
+
+* Usunięcie parametryzacji funkcji utilsowych
+* Agregacja funkcji utilsowych to jednego pliku
+* Zabicie na sztywno
+* Skopiowanie funkcji utilsowych kilka razy w jednym pliku + zmienić ich nazwę
 
 ## License
 
