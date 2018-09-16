@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "name": "warsawjs-workshop-24-admin-panel",
+    "description": "",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+        "start:back-end": "json-server data.json"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "json-server": "^0.14.0"
+    }
+}
