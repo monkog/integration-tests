@@ -6,7 +6,6 @@ class ServerService{
             this.cacheTime = d.getTime();
         }
 
-        console.log(this.cachedResult);
         return Promise.resolve(this.cachedResult.json());
     }
 
