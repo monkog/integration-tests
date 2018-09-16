@@ -1,18 +1,8 @@
 export class Product {
-
-    constructor(options) {
-        Object.keys(options).forEach((property) => {
-            this[property] = options[property];
-        });
+    constructor(object) {
+        this.name = object.name.slice(0, 20);
+        this.id = object.id;
+        this.description = object.description.slice(0, 20);
+        this.image = object.image;
     }
-
-    getName() {
-        return this.name.slice(0, 20);
-    }
-
-    getDescription() {
-        const description = this.description || '';
-        return description.slice(0, 30);
-    }
-
 }
